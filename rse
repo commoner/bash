@@ -1,0 +1,29 @@
+#!/bin/env bash
+
+#
+# The Remote Server Execute (rse) executes the commands in the payload on the
+# list of servers in the server block.
+#
+
+NoColor='\033[0m'
+Red='\033[0;31m'
+Green='\033[0;32m'
+
+function remote_command() {
+  ssh -q -o StrictHostKeyChecking=no -o BatchMode=yes -o ConnectTimeout=10 ${1}
+}<<EOF
+# Payload goes here.
+EOF
+
+
+while
+  read thisServer
+do
+  echo -e "${Green}============${NoColor} ${thisServer} ${Green}==========${NoColor}"
+  remote_command ${thisServer}
+  echo -e "${Red}============${NoColor} ${thisServer} ${Red}==========${NoColor}"
+  echo
+done << EOF
+<server list goes here>
+EOF
+

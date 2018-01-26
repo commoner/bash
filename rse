@@ -27,3 +27,12 @@ done << EOF
 <server list goes here>
 EOF
 
+exit
+# You can leave notes below the exit. It is a convenient way for
+# keeping around server lists and frequently used commands.
+#
+# Another useful trick is to use a $(command) in the server list
+# section to generate a list of servers rather than list them
+# explicitly. In this way, you can use LDAP queries and filters
+# to operate against a fluctuating set of servers as long as their
+# information is being kept current in LDAP.
